@@ -2,7 +2,7 @@ library(RJSONIO)
 library(wordcloud)
 library(ggplot2)
 #Loading Data in R --------------------------------------------------------------------------------------------------
-setwd("C:/Users/Raghava/Documents/git/bitbucket/algorithms/MachineLearning/Python/OneEBlog/Scrapped")
+setwd("C:/Users/sasikanth.Raghava/Documents/git/bitbucket/algorithms/MachineLearning/Python/OneEBlog/Scrapped")
 #load all the json files and list them into a list
 blogs<-list.files(pattern="\\.json")
 bloglists<-lapply(blogs,fromJSON)
@@ -24,6 +24,9 @@ qplot(as.Date(sapply(allblogs, function(x){unlist(x[['Date']])}))[comments.count
 head(sort(table(as.factor(unlist(sapply(allblogs, function(x){unlist(x[['Area']])})))),decreasing = T),40)
 #top bloggers
 head(sort(table(as.factor(unlist(sapply(allblogs, function(x){unlist(x[['Author']])})))),decreasing = T),50)
+#trending the popular words over time
+qplot(as.Date(sapply(allblogs, function(x){unlist(x[['Date']])}))[grepl('Nomad',content)])
+qplot(as.Date(sapply(allblogs, function(x){unlist(x[['Date']])}))[grepl('Shopping',content)])
 #ggplot2 and nlp of tm have conflicting issues
 detach("package:ggplot2", unload=TRUE)
 
@@ -69,3 +72,4 @@ find.duplicates <-function(test)
 
 # find duplicates
 lapply(c(143,56,37,745),find.duplicates)
+
