@@ -1,8 +1,0 @@
-# library(RJSONIO)
-# library(tm)
-# library(wordcloud)
-# library(class)
-options(stringsAsFactors = FALSE)
-df.raw<-read.csv('file.CSV')
-tags<-as.factor(unlist(lapply(df.raw$tags,strsplit,";")))
-library(ggplot2)
